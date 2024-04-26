@@ -9,6 +9,8 @@ import { GlobalUrlStateProvider } from "../_hooks/global-url-state";
 import GlobalLoader from "./components/global-loader";
 import { TaskTable } from "./components/table";
 import { queryParamSchema } from "./schema";
+import { Suspense } from "react";
+import { Loader2 } from "lucide-react";
 
 export const metadata = {
   title: "Next.js Demo - Tasks",
@@ -40,7 +42,15 @@ export default async function HomePage({
             <CardDescription>{metadata.description}</CardDescription>
           </CardHeader>
           <CardContent>
-            <TaskTable queryParams={queryParams} />
+            <Suspense
+              fallback={
+                <div className="flex justify-center py-12">
+                  <Loader2 className="size-6 animate-spin" />
+                </div>
+              }
+            >
+              <TaskTable queryParams={queryParams} />
+            </Suspense>
           </CardContent>
           <GlobalLoader className="absolute right-8 top-8" />
         </Card>

@@ -20,7 +20,7 @@ import usePagination, { ELLIPSIS } from "@/_hooks/use-pagination";
 import { useUrlState } from "@/_hooks/use-url-state";
 import PageSizeSelect from "./page-size-select";
 import { Button } from "~/app/_components/ui/button";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { ChevronLeft, ChevronRight, Loader2 } from "lucide-react";
 
 export default function TablePagination({
   totalPages,
@@ -33,11 +33,13 @@ export default function TablePagination({
   currentItems: number;
   pageSize: number;
 }) {
-  const [optimitiscValue, updateValue] = useUrlState<number, number>({
-    key: "page",
-    value: currentPage,
-    decode: (v) => v,
-  });
+  const [optimitiscValue, updateValue, isPending] = useUrlState<number, number>(
+    {
+      key: "page",
+      value: currentPage,
+      decode: (v) => v,
+    },
+  );
 
   const actualPage = optimitiscValue + 1;
 
@@ -76,8 +78,16 @@ export default function TablePagination({
           <SelectContent side="top">
             {Array.from({ length: totalPages }, (_, idx) => idx + 1).map(
               (p) => (
-                <SelectItem key={p} value={`${p}`}>
-                  {p} / {totalPages}
+                <SelectItem
+                  key={p}
+                  value={`${p}`}
+                  className={p === actualPage ? "font-bold" : "font-normal"}
+                >
+                  {isPending && p === actualPage ? (
+                    <Loader2 className="ml-2 size-4 animate-spin" />
+                  ) : (
+                    `${p} / ${totalPages}`
+                  )}
                 </SelectItem>
               ),
             )}
@@ -112,7 +122,11 @@ export default function TablePagination({
                   isCurrent={page === actualPage}
                   onClick={() => updateValue(page - 1)}
                 >
-                  {page}
+                  {page === actualPage && isPending ? (
+                    <Loader2 className="size-4 animate-spin" />
+                  ) : (
+                    page
+                  )}
                 </PaginationButton>
               )}
             </PaginationItem>
