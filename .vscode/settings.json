@@ -1,3 +1,12 @@
 {
-  "workbench.colorTheme": "Dracula"
+  "workbench.colorTheme": "Dracula",
+  "workbench.editor.customLabels.enabled": true,
+  "workbench.editor.customLabels.patterns": {
+    "**/app/**/page.tsx": "${dirname} [Page]",
+    "**/app/**/index.tsx": "${dirname} [Index]",
+    "**/app/**/layout.tsx": "${dirname} [Layout]",
+    "**/app/**/template.tsx": "${dirname} [Layout]",
+    "**/components/**/index.tsx": "${dirname} [Component]",
+    "**/_components/**/index.tsx": "${dirname} [Component]"
+  }
 }
