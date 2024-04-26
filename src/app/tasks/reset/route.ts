@@ -26,7 +26,7 @@ async function initDb() {
   faker.seed(123);
 
   await db.transaction(async (tx) => {
-    await tx.delete(tasks).execute();
+    await tx.delete(tasks);
 
     await tx.insert(tasks).values(
       Array.from({ length: 50 }, () => {

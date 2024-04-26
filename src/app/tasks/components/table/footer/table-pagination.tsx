@@ -53,13 +53,21 @@ export default function TablePagination({
         <PageSizeSelect pageSize={pageSize} />
       </div>
       <div className="flex items-center gap-2 md:hidden">
-        <Button size="icon" variant="ghost" className="size-8">
+        <Button
+          size="icon"
+          variant="ghost"
+          className="size-8"
+          disabled={!hasPrevious}
+          onClick={() => {
+            updateValue(optimitiscValue - 1);
+          }}
+        >
           <ChevronLeft className="size-4" />
         </Button>
         <Select
           value={`${actualPage}`}
           onValueChange={(value) => {
-            updateValue(Number(value));
+            updateValue(Number(value) - 1);
           }}
         >
           <SelectTrigger className="h-8 w-20">
@@ -75,7 +83,15 @@ export default function TablePagination({
             )}
           </SelectContent>
         </Select>
-        <Button size="icon" variant="ghost" className="size-8">
+        <Button
+          size="icon"
+          variant="ghost"
+          className="size-8"
+          disabled={!hasNext}
+          onClick={() => {
+            updateValue(optimitiscValue + 1);
+          }}
+        >
           <ChevronRight className="size-4" />
         </Button>
       </div>
