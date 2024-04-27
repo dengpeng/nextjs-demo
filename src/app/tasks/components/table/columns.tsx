@@ -1,6 +1,6 @@
 import { formatDistanceToNow } from "date-fns";
 import { labelize } from "~/app/_utils/text";
-import { type SelectedTask } from "../../schema";
+import { type SorterInfo, type SelectedTask } from "../../schema";
 import PriorityIcon from "../priority-icon";
 import StatusIcon from "../status-icon";
 import { Badge } from "~/app/_components/ui/badge";
@@ -31,7 +31,9 @@ export const columnDefs: ColumnDef<SelectedTask>[] = [
             {record.category}
           </Badge>
         </div>
-        <span className="text-base font-medium md:text-sm">{record.title}</span>
+        <span className="text-base font-semibold md:text-sm">
+          {record.title}
+        </span>
         <div className="flex w-full items-center justify-between gap-4 md:hidden">
           <div className="flex items-center gap-2">
             <StatusIcon status={record.status} />
@@ -102,3 +104,19 @@ export const columnDefs: ColumnDef<SelectedTask>[] = [
     ),
   },
 ];
+
+export const sorters: SorterInfo<SelectedTask>[] = columnDefs
+  .filter((columnDef) => columnDef.sortable)
+  .map((columnDef) => [
+    {
+      field: columnDef.field,
+      label: columnDef.label,
+      direction: "asc" as const,
+    },
+    {
+      field: columnDef.field,
+      label: columnDef.label,
+      direction: "desc" as const,
+    },
+  ])
+  .flat();

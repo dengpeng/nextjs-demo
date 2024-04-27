@@ -9,8 +9,9 @@ import PriorityFilter from "./priority-filter";
 import SearchField from "./search-field";
 import StatusFilter from "./status-filter";
 import TableViewOptions from "./table-view-options";
-import { columnDefs } from "../columns";
+import { columnDefs, sorters } from "../columns";
 import { DialogTrigger } from "~/app/_components/ui/dialog";
+import TableSorter from "./table-sorter";
 
 export default async function TableToolbar({
   queryParams,
@@ -31,13 +32,18 @@ export default async function TableToolbar({
           <StatusFilter queryParams={queryParams} />
           <PriorityFilter queryParams={queryParams} />
           <CategoryFilter queryParams={queryParams} />
+          {isFiltered && <FilterReset />}
         </div>
-        {isFiltered && <FilterReset />}
       </div>
-      <div className="flex items-center justify-end gap-2 md:justify-start">
+      <div className="flex items-center justify-between gap-2 md:justify-start">
         <TableViewOptions
           columnDefs={columnDefs.map(({ renderer: _, ...item }) => item)}
           visibleColumns={queryParams.columns}
+        />
+        <TableSorter
+          sort={queryParams.sort}
+          sorters={sorters}
+          className="md:hidden"
         />
         <TaskMutationProvider>
           <TaskDialog>

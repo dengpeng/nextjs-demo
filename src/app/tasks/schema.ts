@@ -112,3 +112,7 @@ export type ColumnDef<TData> = {
   hideable: boolean;
   renderer: (record: TData, field: string & keyof TData) => JSX.Element;
 };
+
+export type Sorter<TData> = { field: keyof TData; direction: "asc" | "desc" };
+
+export type SorterInfo<TData> = Sorter<TData> & { label: string };
