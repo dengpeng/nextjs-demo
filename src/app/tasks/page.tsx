@@ -11,11 +11,37 @@ import { TaskTable } from "./components/table";
 import { queryParamSchema } from "./schema";
 import { Suspense } from "react";
 import { Loader2 } from "lucide-react";
+import { type Metadata } from "next";
 
-export const metadata = {
-  title: "Next.js Demo - Tasks",
-  description:
-    "A simple CRUD demo with React server components and optimitisc updates",
+const title =
+  "Tasks - A Next.js Demo using RSC, server actions and optimistic updates";
+const description =
+  'A simple task manager application that demostrate the usage of server components, server actions and optimistic updates. The UI is based on the "task" exmaple from shadcn UI.';
+
+export const metadata: Metadata = {
+  title,
+  description,
+  openGraph: {
+    title,
+    description,
+    type: "website",
+    images: [
+      {
+        url: `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}/og-tasks.png`,
+        width: 1200,
+        height: 630,
+      },
+    ],
+  },
+  twitter: {
+    title,
+    description,
+    card: "summary_large_image",
+    creator: "@_pdeng",
+    images: [
+      `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}/og-tasks.png`,
+    ],
+  },
 };
 
 export default async function HomePage({

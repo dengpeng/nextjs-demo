@@ -27,7 +27,7 @@ export const columnDefs: ColumnDef<SelectedTask>[] = [
           <span className="text-sm text-muted-foreground md:hidden">
             TASK-{record.id}
           </span>
-          <Badge variant="outline" className="rounded capitalize">
+          <Badge variant="secondary" className="rounded capitalize">
             {record.category}
           </Badge>
         </div>
