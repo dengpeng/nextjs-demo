@@ -5,7 +5,7 @@ import { Toaster } from "./_components/ui/sonner";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 
 const mainFont = localFont({
-  src: "../styles/SNPro-Variable.woff2",
+  src: "../styles/Satoshi-Variable.woff2",
   display: "swap",
   variable: "--font-sans",
 });

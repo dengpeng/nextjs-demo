@@ -45,8 +45,6 @@ export default function TableSorter<TData>({
     ) ?? 0;
   const selectedSorter = sorters[selectedSorterIndex];
 
-  console.log({ sort, optimisticValue, selectedSorterIndex, selectedSorter });
-
   return (
     <Select
       value={`${selectedSorterIndex}`}
