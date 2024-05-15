@@ -1,12 +1,16 @@
-import { and, inArray, count, like } from "drizzle-orm";
+import { count } from "drizzle-orm";
 import { db } from "~/server/db";
-import { taskCategory, tasks } from "../../../schema";
 import { labelize } from "../../../../_utils/text";
+import {
+  buildWhereConditions,
+  taskCategory,
+  tasks,
+  type QueryParams,
+} from "../../../schema";
 import ListFilter from "./list-filter";
-import { type QueryParams } from "../../../schema";
 
 export default async function CategoryFilter({
-  queryParams: { status, category, priority, search },
+  queryParams,
 }: {
   queryParams: QueryParams;
 }) {
@@ -16,13 +20,7 @@ export default async function CategoryFilter({
       category: tasks.category,
     })
     .from(tasks)
-    .where(
-      and(
-        status.length > 0 ? inArray(tasks.status, status) : undefined,
-        priority.length > 0 ? inArray(tasks.priority, priority) : undefined,
-        !!search ? like(tasks.title, `%${search}%`) : undefined,
-      ),
-    )
+    .where(buildWhereConditions(queryParams, ["category"]))
     .groupBy(tasks.category);
 
   const options = taskCategory.map((category) => ({
@@ -37,7 +35,7 @@ export default async function CategoryFilter({
       parameter="category"
       title="Category"
       options={options}
-      value={category}
+      value={queryParams.category}
     />
   );
 }

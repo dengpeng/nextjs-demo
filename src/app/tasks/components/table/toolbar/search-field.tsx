@@ -15,7 +15,7 @@ export default function SearchField({ value }: { value: string | undefined }) {
   return (
     <div className="relative w-full md:w-auto">
       <Input
-        placeholder="Filter tasks..."
+        placeholder="Search tasks..."
         value={optimisticValue}
         onChange={(event) => updateValue(event.target.value)}
         className="h-8 w-full md:w-[150px] lg:w-[250px]"

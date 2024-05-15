@@ -1,31 +1,25 @@
-import { and, inArray, like, count, asc, desc } from "drizzle-orm";
+import { asc, count, desc } from "drizzle-orm";
 import {
   Table,
-  TableHeader,
-  TableRow,
-  TableHead,
   TableBody,
   TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
 } from "~/app/_components/ui/table";
 import { cn } from "~/app/_utils/style";
 import { db } from "~/server/db";
-import { type QueryParams, tasks } from "../../schema";
-import TablePagination from "./footer/table-pagination";
-import TableToolbar from "./toolbar";
+import { buildWhereConditions, tasks, type QueryParams } from "../../schema";
 import { columnDefs } from "./columns";
+import TablePagination from "./footer/table-pagination";
 import TableColumnHeader from "./table-column-header";
 import TableRowAction from "./table-row-action";
+import TableToolbar from "./toolbar";
 
 export async function TaskTable({ queryParams }: { queryParams: QueryParams }) {
-  const { page, pageSize, search, status, category, priority, columns, sort } =
-    queryParams;
+  const { page, pageSize, columns, sort } = queryParams;
 
-  const whereConditions = and(
-    status.length > 0 ? inArray(tasks.status, status) : undefined,
-    priority.length > 0 ? inArray(tasks.priority, priority) : undefined,
-    category.length > 0 ? inArray(tasks.category, category) : undefined,
-    !!search ? like(tasks.title, `%${search}%`) : undefined,
-  );
+  const whereConditions = buildWhereConditions(queryParams);
 
   const totalItems = await db
     .select({ count: count(tasks.id) })

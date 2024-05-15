@@ -1,3 +1,4 @@
+import { and, gte, inArray, like, lte } from "drizzle-orm";
 import { index, int, text } from "drizzle-orm/sqlite-core";
 import { createSelectSchema, createInsertSchema } from "drizzle-zod";
 import { z } from "zod";
@@ -56,6 +57,28 @@ export type TaskField = z.infer<typeof taskFieldSchema>;
 
 const defaultColumns: TaskField[] = ["id", "title", "status", "priority"];
 
+export const queryParamDateRangeSchema = z.preprocess(
+  (v) => {
+    if (typeof v === "string") {
+      const [from, to] = v.split(":");
+      if (!from && !to) {
+        return undefined;
+      }
+      return {
+        from: from ? new Date(parseInt(from)) : undefined,
+        to: to ? new Date(parseInt(to)) : undefined,
+      };
+    }
+    return undefined;
+  },
+  z
+    .object({ from: z.date().optional(), to: z.date().optional() })
+    .optional()
+    .catch({}),
+);
+
+export type QueryParamDateRange = z.infer<typeof queryParamDateRangeSchema>;
+
 export const queryParamSchema = z.object({
   page: z.coerce.number().nonnegative().optional().default(0).catch(0),
   pageSize: z.coerce.number().positive().optional().default(10).catch(10),
@@ -78,6 +101,7 @@ export const queryParamSchema = z.object({
     .default([])
     .catch([])
     .transform((val) => (Array.isArray(val) ? val : [val])),
+  createdAt: queryParamDateRangeSchema,
   columns: z
     .union([taskFieldSchema, z.array(taskFieldSchema)])
     .optional()
@@ -116,3 +140,31 @@ export type ColumnDef<TData> = {
 export type Sorter<TData> = { field: keyof TData; direction: "asc" | "desc" };
 
 export type SorterInfo<TData> = Sorter<TData> & { label: string };
+
+export const buildWhereConditions = (
+  queryParams: QueryParams,
+  excludes: (keyof QueryParams)[] = [],
+) => {
+  const { search, status, category, priority, createdAt } = queryParams;
+
+  return and(
+    !excludes.includes("status") && status.length > 0
+      ? inArray(tasks.status, status)
+      : undefined,
+    !excludes.includes("priority") && priority.length > 0
+      ? inArray(tasks.priority, priority)
+      : undefined,
+    !excludes.includes("category") && category.length > 0
+      ? inArray(tasks.category, category)
+      : undefined,
+    !excludes.includes("search") && !!search
+      ? like(tasks.title, `%${search}%`)
+      : undefined,
+    !excludes.includes("createdAt") && createdAt?.from
+      ? gte(tasks.createdAt, createdAt.from)
+      : undefined,
+    !excludes.includes("createdAt") && createdAt?.to
+      ? lte(tasks.createdAt, createdAt.to)
+      : undefined,
+  );
+};

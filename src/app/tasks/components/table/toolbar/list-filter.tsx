@@ -61,7 +61,7 @@ export default function ListFilter({
               <Separator orientation="vertical" className="mx-2 h-4" />
               <Badge
                 variant="secondary"
-                className="rounded-sm px-1 font-normal lg:hidden"
+                className="min-w-6 justify-center rounded-sm px-1 font-normal lg:hidden"
               >
                 {optimisticValue.length}
               </Badge>
