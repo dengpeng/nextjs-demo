@@ -65,7 +65,9 @@ export default async function HomePage({
         <Card className="relative w-full max-w-7xl border-none shadow-none">
           <CardHeader>
             <CardTitle>Tasks</CardTitle>
-            <CardDescription>{metadata.description}</CardDescription>
+            <CardDescription className="max-w-3xl">
+              {metadata.description}
+            </CardDescription>
           </CardHeader>
           <CardContent>
             <Suspense
