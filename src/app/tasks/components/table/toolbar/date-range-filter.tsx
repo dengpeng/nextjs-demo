@@ -95,7 +95,7 @@ export default function DateRangeFilter({
       </PopoverTrigger>
       <PopoverContent className="w-auto p-0" align="start">
         <Calendar
-          initialFocus
+          autoFocus={true}
           mode="range"
           selected={{ from: undefined, ...optimisticValue }} // Just a walk around, since the Calendar component requires the "from" property to be defined
           defaultMonth={optimisticValue?.from ?? new Date()}
