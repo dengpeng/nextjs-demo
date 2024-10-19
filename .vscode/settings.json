@@ -1,5 +1,5 @@
 {
-  "workbench.colorTheme": "Dracula",
+  "workbench.colorTheme": "Dracula Theme",
   "workbench.editor.customLabels.enabled": true,
   "workbench.editor.customLabels.patterns": {
     "**/app/**/page.tsx": "${dirname} [Page]",
