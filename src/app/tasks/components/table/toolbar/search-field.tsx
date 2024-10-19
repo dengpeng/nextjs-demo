@@ -13,7 +13,7 @@ export default function SearchField({ value }: { value: string | undefined }) {
   });
 
   return (
-    <div className="relative w-full md:w-auto">
+    <div className="relative w-full md:w-fit">
       <Input
         placeholder="Search tasks..."
         value={optimisticValue}
