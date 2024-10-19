@@ -19,7 +19,7 @@ import {
   CommandList,
   CommandSeparator,
 } from "@/_components/ui/command";
-import { cn } from "../../../../_utils/style";
+import { cn } from "@/_utils/style";
 
 export default function ListFilter({
   parameter,

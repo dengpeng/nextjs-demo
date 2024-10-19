@@ -12,7 +12,7 @@ import {
 import { useUrlState } from "~/app/_hooks/use-url-state";
 import { Badge } from "@/_components/ui/badge";
 import { Separator } from "@/_components/ui/separator";
-import { type QueryParamDateRange } from "~/app/tasks/schema";
+import { type QueryParamDateRange } from "@/(demo)/tasks/schema";
 
 export default function DateRangeFilter({
   title,

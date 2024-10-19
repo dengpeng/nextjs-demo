@@ -6,7 +6,7 @@ import {
   taskPriority,
   taskStatus,
   tasks,
-} from "~/app/tasks/schema";
+} from "@/(demo)/tasks/schema";
 import { db } from "~/server/db";
 
 export async function GET(request: NextRequest) {

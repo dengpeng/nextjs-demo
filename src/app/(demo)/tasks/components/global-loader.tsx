@@ -1,8 +1,8 @@
 "use client";
 
 import { Loader2 } from "lucide-react";
-import { useGlobalUrlState } from "../../_hooks/global-url-state";
-import { cn } from "../../_utils/style";
+import { useGlobalUrlState } from "@/_hooks/global-url-state";
+import { cn } from "@/_utils/style";
 
 export default function GlobalLoader({ className }: { className?: string }) {
   const [isPending] = useGlobalUrlState();

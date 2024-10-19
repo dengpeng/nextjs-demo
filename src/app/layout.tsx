@@ -11,8 +11,9 @@ const mainFont = localFont({
 });
 
 export const metadata = {
-  title: "Next.js Demo",
-  description: "A series demo for common patterns",
+  title: "Next.js Patterns",
+  description:
+    "A (working-in-progress) collection of demos and examples of common patterns & best practices used in the development of Next.js & React applications.",
   icons: [
     {
       rel: "icon",

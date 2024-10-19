@@ -1,6 +1,6 @@
 import { count } from "drizzle-orm";
 import { db } from "~/server/db";
-import { labelize } from "../../../../_utils/text";
+import { labelize } from "@/_utils/text";
 import {
   buildWhereConditions,
   taskStatus,

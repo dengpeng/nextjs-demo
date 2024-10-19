@@ -11,7 +11,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/_components/ui/dropdown-menu";
-import { type ColumnDef } from "~/app/tasks/schema";
+import { type ColumnDef } from "@/(demo)/tasks/schema";
 import { useUrlState } from "@/_hooks/use-url-state";
 
 export default function TableViewOptions<TData>({

@@ -5,7 +5,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/_components/ui/card";
-import { GlobalUrlStateProvider } from "../_hooks/global-url-state";
+import { GlobalUrlStateProvider } from "@/_hooks/global-url-state";
 import GlobalLoader from "./components/global-loader";
 import { TaskTable } from "./components/table";
 import { queryParamSchema } from "./schema";

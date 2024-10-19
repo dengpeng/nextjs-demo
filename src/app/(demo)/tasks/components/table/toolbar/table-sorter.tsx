@@ -10,7 +10,7 @@ import {
 } from "~/app/_components/ui/select";
 import { useUrlState } from "~/app/_hooks/use-url-state";
 import { cn } from "~/app/_utils/style";
-import { type Sorter, type SorterInfo } from "~/app/tasks/schema";
+import { type Sorter, type SorterInfo } from "@/(demo)/tasks/schema";
 
 export default function TableSorter<TData>({
   sort,

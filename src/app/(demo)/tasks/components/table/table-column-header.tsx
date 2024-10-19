@@ -8,17 +8,17 @@ import {
   ChevronsUpDown,
   EyeOff,
 } from "lucide-react";
-import { Button } from "../../../_components/ui/button";
+import { Button } from "@/_components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "../../../_components/ui/dropdown-menu";
-import { cn } from "../../../_utils/style";
+} from "@/_components/ui/dropdown-menu";
+import { cn } from "@/_utils/style";
 import { type ColumnDef } from "../../schema";
-import { useUrlState } from "../../../_hooks/use-url-state";
+import { useUrlState } from "@/_hooks/use-url-state";
 
 type Sorter<TData> = { field: keyof TData; direction: "asc" | "desc" };
 

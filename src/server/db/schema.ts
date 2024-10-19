@@ -1,1 +1,1 @@
-export * from "@/tasks/schema";
+export * from "@/(demo)/tasks/schema";
