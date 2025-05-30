@@ -14,5 +14,4 @@ A simple task manager application that demostrate the usage of server components
 - [React](https://reactjs.org)
 - [Tailwind CSS](https://tailwindcss.com)
 - [Drizzle ORM](https://orm.drizzle.team)
-- [Zod](https://zod.dev)
 - [Schadcn UI](https://ui.shadcn.com)
