@@ -10,9 +10,9 @@ A simple task manager application that demostrate the usage of server components
 
 ## Tech Stack
 
-- [Next.js](https://nextjs.org/)
-- [React](https://reactjs.org/)
-- [Tailwind CSS](https://tailwindcss.com/)
-- [Drizzle ORM](https://orm.drizzle.team/)
+- [Next.js](https://nextjs.org)
+- [React](https://reactjs.org)
+- [Tailwind CSS](https://tailwindcss.com)
+- [Drizzle ORM](https://orm.drizzle.team)
 - [Zod](https://zod.dev)
-- [Schadcn UI](https://ui.shadcn.com/)
+- [Schadcn UI](https://ui.shadcn.com)
